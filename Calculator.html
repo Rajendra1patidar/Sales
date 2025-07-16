@@ -1,0 +1,406 @@
+<head>
+  <title>Fuel Sales Calculator</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      transition: background-color 0.5s ease-in-out;
+      background: linear-gradient(to bottom, #f4f4f4, #e0e0e0);
+    }
+
+    .box {
+      background-color: #ffffff;
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .heading {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: darkorange;
+      transition: color 0.3s ease-in-out;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .subheading {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: lightblue;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .output-group {
+      margin-bottom: 20px;
+    }
+
+    .output-group label {
+      display: inline-block;
+      width: 150px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #204686;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease-in-out;
+      text-transform: uppercase;
+    }
+
+    .button:hover {
+      background-color: green;
+      transform: scale(1.02);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .custom-dropdown {
+      width: 80%;
+    }
+
+    .total-amount-section {
+      margin-top: 20px;
+    }
+
+    #total-amount {
+      font-size: 18px;
+      font-weight: bold;
+      padding: 10px;
+      width: 80%;
+      color: #333333;
+    }
+
+    .rate {
+      font-weight: bold;
+      color: darkorange;
+    }
+
+    .sidebar {
+      display: none;
+    }
+
+    .scrolled #container {
+      background: linear-gradient(to bottom, #f9f9f9, #e0e0e0);
+    }
+
+    .ms-section {
+      background: linear-gradient(to bottom, #f5f5f5, #e0e0e0);
+    }
+
+    .hsd-section {
+      background: linear-gradient(to bottom, #fafafa, #e0e0e0);
+    }
+
+    /* Additional Styles for UI Enhancements */
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333333;
+    }
+
+    .box {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .button {
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    input[type="number"] {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 80%;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #204686;
+      box-shadow: 0 0 4px rgba(32, 70, 134, 0.4);
+    }
+
+    .output-group input[type="number"] {
+      background-color: #f9f9f9;
+      color: #333333;
+    }
+
+    .output-group input[type="number"]:disabled {
+      background-color: #dddddd;
+    }
+
+    /* Additional UI Enhancements */
+
+    /* Update heading style */
+    .heading {
+      font-size: 28px;
+      color: #ff6b00;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+      margin-bottom: 15px;
+    }
+
+    /* Enhance subheading style */
+    .subheading {
+      font-size: 20px;
+      color: #0099cc;
+      margin-bottom: 15px;
+    }
+
+    /* Update form labels style */
+    .form-group label {
+      font-size: 16px;
+    }
+
+    /* Update output labels style */
+    .output-group label {
+      font-size: 16px;
+    }
+
+    /* Add hover effect to form labels */
+    .form-group label:hover {
+      color: #ff6b00;
+    }
+
+    /* Add hover effect to output labels */
+    .output-group label:hover {
+      color: #ff6b00;
+    }
+
+    /* Add animation to the button */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .button:hover {
+      animation: pulse 2s infinite;
+    }
+
+    /* Additional Aesthetic Enhancements */
+
+    /* Add consistent padding and margins */
+    #container {
+      padding: 40px;
+    }
+
+    .box {
+      margin: 0 0 40px;
+    }
+
+    .form-group,
+    .output-group {
+      margin-bottom: 15px;
+    }
+
+    /* Improve alignment and spacing */
+    .form-group,
+    .output-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .form-group label,
+    .output-group label {
+      margin-right: 10px;
+    }
+
+    .output-group input[type="number"] {
+      width: 100%;
+      padding: 8px;
+    }
+
+    /* Update button style */
+    .button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    /* Update total amount box size */
+    #total-amount {
+      padding: 12px;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div id="container">
+    <div class="box">
+      <div class="heading">RATNAPRIYA KSK</div>
+      <div id="datetime"></div>
+    </div>
+
+    <div class="box ms-section">
+      <div class="heading">Petrol (MS)</div>
+      <div class="subheading">Calculate Sale and Amount</div>
+      <div class="form-group">
+        <label for="ms-initial">Initial Volume:</label>
+        <input type="number" id="ms-initial" step="any">
+      </div>
+      <div class="form-group">
+        <label for="ms-final">Final Volume:</label>
+        <input type="number" id="ms-final" step="any">
+      </div>
+      <div class="form-group">
+        <label for="ms-testing">Testing:</label>
+        <select id="ms-testing" class="custom-dropdown">
+          <option value="0">0</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="ms-rate">Rate:</label>
+        <input type="number" id="ms-rate" value="109.58" step="any">
+      </div>
+      <div class="output-group">
+        <label for="ms-sale">Sale:</label>
+        <input type="number" id="ms-sale" disabled>
+      </div>
+      <div class="output-group">
+        <label for="ms-amount">Amount:</label>
+        <input type="number" id="ms-amount" disabled>
+      </div>
+      <button class="button" onclick="calculateMS()">Calculate</button>
+    </div>
+
+    <div class="box hsd-section">
+      <div class="heading">Diesel (HSD)</div>
+      <div class="subheading">Calculate Sale and Amount</div>
+      <div class="form-group">
+        <label for="hsd-initial">Initial Volume:</label>
+        <input type="number" id="hsd-initial" step="any">
+      </div>
+      <div class="form-group">
+        <label for="hsd-final">Final Volume:</label>
+        <input type="number" id="hsd-final" step="any">
+      </div>
+      <div class="form-group">
+        <label for="hsd-testing">Testing:</label>
+        <select id="hsd-testing" class="custom-dropdown">
+          <option value="0">0</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="hsd-rate">Rate:</label>
+        <input type="number" id="hsd-rate" value="94.76" step="any">
+      </div>
+      <div class="output-group">
+        <label for="hsd-sale">Sale:</label>
+        <input type="number" id="hsd-sale" disabled>
+      </div>
+      <div class="output-group">
+        <label for="hsd-amount">Amount:</label>
+        <input type="number" id="hsd-amount" disabled>
+      </div>
+      <button class="button" onclick="calculateHSD()">Calculate</button>
+    </div>
+
+    <div class="box total-amount-section">
+      <div class="subheading">Total Amount</div>
+      <div class="output-group">
+        <label for="total-amount">Total Amount:</label>
+        <input type="number" id="total-amount" disabled>
+      </div>
+      <button class="button" onclick="calculateTotalAmount()">Calculate</button>
+    </div>
+  </div>
+
+  <script>
+    function calculateMS() {
+      var msInitial = parseFloat(document.getElementById('ms-initial').value);
+      var msFinal = parseFloat(document.getElementById('ms-final').value);
+      var msTesting = parseFloat(document.getElementById('ms-testing').value);
+      var msRate = parseFloat(document.getElementById('ms-rate').value); // Get the updated rate
+      var msSale = msFinal - msInitial - msTesting;
+      var msAmount = msSale * msRate; // Use the updated rate
+      document.getElementById('ms-sale').value = msSale.toFixed(2);
+      document.getElementById('ms-amount').value = msAmount.toFixed(2);
+    }
+
+    function calculateHSD() {
+      var hsdInitial = parseFloat(document.getElementById('hsd-initial').value);
+      var hsdFinal = parseFloat(document.getElementById('hsd-final').value);
+      var hsdTesting = parseFloat(document.getElementById('hsd-testing').value);
+      var hsdRate = parseFloat(document.getElementById('hsd-rate').value); // Get the updated rate
+      var hsdSale = hsdFinal - hsdInitial - hsdTesting;
+      var hsdAmount = hsdSale * hsdRate; // Use the updated rate
+      document.getElementById('hsd-sale').value = hsdSale.toFixed(2);
+      document.getElementById('hsd-amount').value = hsdAmount.toFixed(2);
+    }
+
+    function calculateTotalAmount() {
+      var msAmount = parseFloat(document.getElementById('ms-amount').value);
+      var hsdAmount = parseFloat(document.getElementById('hsd-amount').value);
+      var totalAmount = msAmount + hsdAmount;
+      document.getElementById('total-amount').value = totalAmount.toFixed(2);
+    }
+
+    // Update the heading color on scrolling
+    window.addEventListener("scroll", function () {
+      var container = document.getElementById("container");
+      container.classList.toggle("scrolled", window.scrollY > 0);
+    });
+
+    // Update the date and time
+    setInterval(function () {
+      var datetimeElement = document.getElementById("datetime");
+      var now = new Date();
+      var dateTimeString =
+        now.toLocaleDateString() + " " + now.toLocaleTimeString();
+      datetimeElement.innerText = dateTimeString;
+    }, 1000);
+  </script>
+</body>
+  </html>
