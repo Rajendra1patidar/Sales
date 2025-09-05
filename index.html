@@ -183,94 +183,134 @@
       margin-bottom: 15px;
     }
 
-    /* Enhance subheading style */
-    .subheading {
-      font-size: 20px;
-      color: #0099cc;
-      margin-bottom: 15px;
-    }
+/* ====== Headings ====== */
+.heading {
+  font-size: 24px; /* slightly smaller on mobile */
+  color: #ff6b00;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0 15px;
+  text-align: center; /* center align for mobile readability */
+}
 
-    /* Update form labels style */
-    .form-group label {
-      font-size: 16px;
-    }
+.subheading {
+  font-size: 18px;
+  color: #0077aa;
+  margin-bottom: 15px;
+  text-align: center;
+}
 
-    /* Update output labels style */
-    .output-group label {
-      font-size: 16px;
-    }
+/* ====== Form & Output Groups ====== */
+.form-group,
+.output-group {
+  display: flex;
+  flex-direction: column; /* stack by default (mobile-first) */
+  margin-bottom: 15px;
+}
 
-    /* Add hover effect to form labels */
-    .form-group label:hover {
-      color: #ff6b00;
-    }
+.form-group label,
+.output-group label {
+  font-size: 16px;
+  margin-bottom: 6px; /* spacing below label */
+  cursor: pointer;
+}
 
-    /* Add hover effect to output labels */
-    .output-group label:hover {
-      color: #ff6b00;
-    }
+.form-group label:hover,
+.output-group label:hover {
+  color: #ff6b00;
+}
 
-    /* Add animation to the button */
-    @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.1);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+.form-group input,
+.output-group input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
 
-    .button:hover {
-      animation: pulse 2s infinite;
-    }
+/* ====== Buttons ====== */
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
 
-    /* Additional Aesthetic Enhancements */
+.button {
+  width: 100%; /* full width on mobile */
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  background: #0099cc;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
 
-    /* Add consistent padding and margins */
-    #container {
-      padding: 40px;
-    }
+.button:hover {
+  background: #0077aa;
+  animation: pulse 0.6s ease-in-out;
+  transform: translateY(-2px);
+}
 
-    .box {
-      margin: 0 0 40px;
-    }
+.button:focus {
+  outline: 2px solid #ff6b00;
+  outline-offset: 2px;
+}
 
-    .form-group,
-    .output-group {
-      margin-bottom: 15px;
-    }
+/* ====== Layout & Spacing ====== */
+#container {
+  padding: 20px; /* smaller padding for mobile */
+}
 
-    /* Improve alignment and spacing */
-    .form-group,
-    .output-group {
-      display: flex;
-      align-items: center;
-    }
+.box {
+  margin-bottom: 30px;
+}
 
-    .form-group label,
-    .output-group label {
-      margin-right: 10px;
-    }
+#total-amount {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f9f9f9;
+}
 
-    .output-group input[type="number"] {
-      width: 100%;
-      padding: 8px;
-    }
+/* ====== Responsive Enhancements ====== */
+@media (min-width: 768px) {
+  /* On tablets and larger screens, align labels & inputs horizontally */
+  .form-group,
+  .output-group {
+    flex-direction: row;
+    align-items: center;
+  }
 
-    /* Update button style */
-    .button {
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 6px;
-    }
+  .form-group label,
+  .output-group label {
+    margin-right: 10px;
+    margin-bottom: 0;
+    flex: 0 0 150px; /* fixed label width */
+  }
 
-    /* Update total amount box size */
-    #total-amount {
-      padding: 12px;
-    }
+  .form-group input,
+  .output-group input[type="number"] {
+    flex: 1;
+  }
+
+  .button {
+    width: auto; /* buttons shrink to content on larger screens */
+    padding: 12px 24px;
+  }
+
+  .heading {
+    font-size: 28px;
+    text-align: left;
+  }
+
+  .subheading {
+    font-size: 20px;
+    text-align: left;
+  }
+}
+
   </style>
 </head>
 
