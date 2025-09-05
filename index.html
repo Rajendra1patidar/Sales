@@ -239,6 +239,69 @@
   width: 100%; /* full width on mobile */
   padding: 14px;
   font-size: 16px;
+/* ====== 16:9 Container ====== */
+#container {
+  width: 100vw;
+  height: 56.25vw; /* 16:9 ratio (9/16 = 0.5625) */
+  max-height: 100vh; /* don’t exceed screen height */
+  max-width: 177.78vh; /* keep ratio if height is limiting factor */
+  margin: auto;
+  padding: 2%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* spread evenly */
+  align-items: center;
+  overflow: hidden; /* prevent scrollbars */
+}
+
+/* ====== Typography ====== */
+.heading {
+  font-size: clamp(20px, 3vw, 28px);
+  color: #ff6b00;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.subheading {
+  font-size: clamp(16px, 2vw, 20px);
+  color: #0077aa;
+  text-align: center;
+}
+
+/* ====== Form & Output Groups ====== */
+.form-group,
+.output-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2%;
+  width: 100%;
+}
+
+.form-group label,
+.output-group label {
+  font-size: clamp(14px, 1.5vw, 16px);
+  margin-bottom: 6px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.form-group input,
+.output-group input[type="number"] {
+  width: 100%;
+  padding: clamp(8px, 1vw, 12px);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: clamp(14px, 1.5vw, 16px);
+}
+
+/* ====== Button ====== */
+.button {
+  width: 100%;
+  max-width: 200px;
+  padding: clamp(10px, 1.5vw, 14px);
+  font-size: clamp(14px, 1.5vw, 16px);
   border-radius: 8px;
   background: #0099cc;
   color: #fff;
@@ -249,34 +312,20 @@
 
 .button:hover {
   background: #0077aa;
-  animation: pulse 0.6s ease-in-out;
   transform: translateY(-2px);
 }
 
-.button:focus {
-  outline: 2px solid #ff6b00;
-  outline-offset: 2px;
-}
-
-/* ====== Layout & Spacing ====== */
-#container {
-  padding: 20px; /* smaller padding for mobile */
-}
-
-.box {
-  margin-bottom: 30px;
-}
-
+/* ====== Total Amount Box ====== */
 #total-amount {
-  padding: 12px;
+  padding: clamp(10px, 1vw, 14px);
   border: 1px solid #ddd;
   border-radius: 6px;
   background: #f9f9f9;
+  font-size: clamp(14px, 1.5vw, 16px);
 }
 
-/* ====== Responsive Enhancements ====== */
+/* ====== Responsive Behavior ====== */
 @media (min-width: 768px) {
-  /* On tablets and larger screens, align labels & inputs horizontally */
   .form-group,
   .output-group {
     flex-direction: row;
@@ -285,9 +334,9 @@
 
   .form-group label,
   .output-group label {
-    margin-right: 10px;
+    flex: 0 0 150px;
     margin-bottom: 0;
-    flex: 0 0 150px; /* fixed label width */
+    margin-right: 10px;
   }
 
   .form-group input,
@@ -296,20 +345,10 @@
   }
 
   .button {
-    width: auto; /* buttons shrink to content on larger screens */
-    padding: 12px 24px;
-  }
-
-  .heading {
-    font-size: 28px;
-    text-align: left;
-  }
-
-  .subheading {
-    font-size: 20px;
-    text-align: left;
+    width: auto;
   }
 }
+
 
   </style>
 </head>
